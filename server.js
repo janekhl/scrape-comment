@@ -80,6 +80,18 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
+app.delete("/note/:id", function (req, res) {
+
+  db.Note.findByIdAndRemove(req.params.id, function(error, article) {
+    if (error) return res.status(500).send(error);
+    const response = {
+        id: req.params.id
+    };
+    return res.status(200).send(response);
+  })
+
+});
+
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
 });

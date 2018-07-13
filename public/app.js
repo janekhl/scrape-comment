@@ -4,6 +4,16 @@ $.getJSON("/articles", function(data) {
   }
 });
 
+$(document).on("click","#scraper", function(){
+  $.ajax({
+    method: "GET",
+    url: "/scrape"
+  }).then(function(data){
+    console.log(data);
+    location.reload();
+  })
+});
+
 
 $(document).on("click", "p", function() {
   $("#notes").empty();
